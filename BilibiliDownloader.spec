@@ -1,6 +1,8 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+import re
 import sys
+from pathlib import Path
 
 from bilibili_downloader import __version__
 
@@ -24,6 +26,23 @@ a = Analysis(
     noarchive=False,
     optimize=0,
 )
+if sys.platform == 'win32':
+    import PySide6
+
+    # Qt uses Windows' system ICU. A different icuuc.dll on the build host's
+    # PATH (for example Poppler's) has incompatible exports and breaks QtCore.
+    a.binaries = [
+        entry for entry in a.binaries
+        if not re.fullmatch(r'icuuc\.dll|icudt\d+\.dll', Path(entry[0]).name.lower())
+    ]
+    # Match the runtime used by Qt in this payload, rather than an older copy
+    # from the build machine's Python installation.
+    runtime_names = ('VCRUNTIME140.dll', 'VCRUNTIME140_1.dll')
+    a.binaries = [entry for entry in a.binaries if entry[0].upper() not in {
+        name.upper() for name in runtime_names
+    }]
+    qt_root = Path(PySide6.__file__).parent
+    a.binaries += [(name, str(qt_root / name), 'BINARY') for name in runtime_names]
 pyz = PYZ(a.pure)
 
 exe = EXE(

@@ -32,6 +32,10 @@
   <a href="LICENSE"><img src="https://img.shields.io/github/license/itsVicOC/bilibili-downloader" alt="MIT License"></a>
 </p>
 
+> 此仓库是 [itsVicOC/BiliFlow](https://github.com/itsVicOC/bilibili-downloader) 的公开 fork。修正字幕错配，默认分别保存中文和英文字幕（含 AI）；修正已提交至上游 [PR #32](https://github.com/itsVicOC/bilibili-downloader/pull/32)。下方“下载正式版”链接仍指向上游发行版。
+>
+> 2026-11-06 审查：已吸纳上游 PR [#24](https://github.com/itsVicOC/bilibili-downloader/pull/24)（Ruff）、[#25](https://github.com/itsVicOC/bilibili-downloader/pull/25)（packaging）、[#27](https://github.com/itsVicOC/bilibili-downloader/pull/27)（setup-python）、[#29](https://github.com/itsVicOC/bilibili-downloader/pull/29)（certifi），这些 PR 的现有 CI 全部通过。[#23](https://github.com/itsVicOC/bilibili-downloader/pull/23) 暂缓：Python 3.11/Linux 出现原生崩溃，Windows 线程停止测试失败。[#28](https://github.com/itsVicOC/bilibili-downloader/pull/28) 暂缓：同一个 Windows 线程停止测试失败，需重跑确认。
+
 **BiliFlow**（仓库名 `bilibili-downloader`）是一款开源的 B 站桌面下载与直播录制工具，同时提供 **GUI 与 CLI**。从单个视频、多 P、番剧到合集、系列和收藏夹，你可以筛选批量任务、暂停后继续下载，并将视频或音频与字幕、弹幕、封面、元数据一起整理到本地。
 
 支持 Windows、macOS 和 Linux；Windows 与 Apple Silicon Mac 提供预构建包，Linux 可从源码运行。项目代码采用 MIT License。
